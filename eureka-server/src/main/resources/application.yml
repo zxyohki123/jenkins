@@ -1,0 +1,19 @@
+server:
+  port: 8989 # 注册中心占用8989端口
+security:
+  basic:
+    enabled: true
+  user:
+    name: system #用户名
+    password: 123456 #密码
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  server:
+    # 测试时关闭自我保护机制，保证不可用服务及时踢出
+    enable-self-preservation: false
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8989/eureka/
