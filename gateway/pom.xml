@@ -6,7 +6,7 @@
   <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.5.RELEASE</version>
+        <version>1.5.9.RELEASE</version>
    </parent>
 
     <dependencyManagement>
@@ -67,15 +67,50 @@
     		<version>1.7.2</version>
 		</dependency>		
     </dependencies>
-     <build>  
-            <finalName>zuul-getway</finalName>  
-            <plugins>  
-                <plugin>  
-                    <groupId>org.springframework.boot</groupId>  
-                    <artifactId>spring-boot-maven-plugin</artifactId>  
-                </plugin>  
-            </plugins>  
-        </build>  
+    <build>
+		<finalName>gateway-service</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.dic</include>
+					<include>**/*.properties</include>
+					<include>**/*.tld</include>
+					<include>**/*.loc</include>
+					<include>**/*.xsd</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.13</version>
+				<configuration>
+					<imageName>gateway-service</imageName>
+					<baseImage>java:8</baseImage>
+					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
         <repositories>  
             <repository>  
                 <id>spring-milestone</id>  
