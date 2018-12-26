@@ -1,14 +1,10 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://system:123456@peer1:8989/eureka/,http://system:123456@peer2:8988/eureka/
+      defaultZone: http://system:123456@192.168.0.14:8989/eureka
 spring:
   application:
     name: gateway
 server:
-  port: 8083
-zuul:
-  routes:
-    notice: /notice/**
-    feign: /feign/**
-    bsys: /bsys/**
+  port: 80
+
