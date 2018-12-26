@@ -6,5 +6,5 @@ spring:
   application:
     name: gateway
 server:
-  port: 8099
+  port: 80
 
