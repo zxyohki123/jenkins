@@ -1,0 +1,3 @@
+D:\springCloud\gateway\src\main\java\com\yunagile\gateway\Application.java
+D:\springCloud\gateway\src\main\java\com\yunagile\gateway\fallback\NoticeFallBackProvider.java
+D:\springCloud\gateway\src\main\java\com\yunagile\gateway\fallback\FeignFallBackProvider.java
